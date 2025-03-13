@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, MapPin, Home, Bed, Bath, LandPlot, DollarSign, Car, Wind, ShieldCheck, CircleDot, Image as ImageIcon, FileText, Building, Flag, Download }from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Home, Bed, Bath, LandPlot, DollarSign, Car, Wind, ShieldCheck, CircleDot, Image as ImageIcon, FileText, Building, Flag, Download, Edit, Delete }from 'lucide-react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+import EditProperty from './../modals/EditProperty'
 
 const PropertyDetails = ({id}) => {
   const navigate = useNavigate();
@@ -48,24 +50,88 @@ const PropertyDetails = ({id}) => {
     );
   }
 
+  const onUpdatePropertyData = async (updatedPropertyData) => {
+    try {
+      // Make a PATCH request to the backend to update the PropertyData
+      const response = await axios.patch(
+        `https://vortexwebpropertymanagement.com/api/properties/${updatedPropertyData.id}`,
+        updatedPropertyData
+      );
+
+      if (response.status === 200) {
+        console.log("PropertyData updated successfully:", response.data);
+
+        setProperty({
+          ...property,
+          ...updatedPropertyData, // Update the property data with new values
+        });
+
+        window.alert("PropertyData updated successfully!");
+      }
+    } catch (error) {
+      console.error("Error updating PropertyData:", error);
+      window.alert("Failed to update PropertyData. Please try again.");
+    }
+  };
+
+  const renderFeatureAmenities = (title, items, color) => (
+    items && items.length > 0 && (
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+          {items.map((item, index) => (
+            <div key={`${title}-${index}`} className="flex items-center">
+              <CircleDot className={`w-4 h-4 ${color} mr-2`} />
+              <span className="text-gray-700">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  );
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
+
+        <div className='flex gap-[70%]'>
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className="mb-6"
-        >
+          >
+          <div className='flex gap-96'>
           <button 
             onClick={() => navigate(-1)} 
             className="flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
-          >
+            >
             <ArrowLeft className="w-5 h-5 mr-2" />
             <span>Back to properties</span>
           </button>
+            </div>
         </motion.div>
+
+        <div className='flex gap-8'> 
+          {/* <button
+          className="flex items-center text-green-600 hover:text-gray-900 transition-colors duration-200"
+          >
+          <Edit className="w-8 h-8 m-3"/>
+            Edit
+          </button> */}
+          <EditProperty
+            onUpdateProperty={onUpdatePropertyData}
+            existingProperty={property}
+          />
+          <button
+          className="flex items-center text-red-600 hover:text-gray-900 transition-colors duration-200"
+          >
+          <Delete className="w-8 h-8 m-3" />
+            Delete
+          </button>
+            </div>
+            </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -180,7 +246,7 @@ const PropertyDetails = ({id}) => {
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition-all duration-200 flex items-center justify-center"
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-all duration-200 flex items-center justify-center"
                 >
                   <span>Contact Property Manager</span>
                 </motion.button>
@@ -301,21 +367,16 @@ const PropertyDetails = ({id}) => {
               whileHover={{ boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
               transition={{ duration: 0.2 }}
             >
-              <h2 className="text-lg font-semibold mb-4">Features & Amenities</h2>
               
-              {(property.feature && property.feature.length > 0) || 
-               (property.amenities && property.amenities.length > 0) ? (
-                <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-                  {[...(property.feature || []), ...(property.amenities || [])].map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <CircleDot className="w-4 h-4 text-green-500 mr-2" />
-                      <span className="text-gray-700">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-500">No features or amenities listed</p>
-              )}
+              {(property.feature?.length || property.amenities?.length) ? (
+  <div className="space-y-4">
+    {renderFeatureAmenities("Features", property.feature, "text-green-500")}
+    {renderFeatureAmenities("Amenities", property.amenities, "text-blue-500")}
+  </div>
+) : (
+  <p className="text-gray-500">No features or amenities listed</p>
+)}
+
             </motion.div>
             
             {/* Property Timeline */}

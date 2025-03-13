@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import { Link } from 'react-router';
 import IndividualProperty from './../pages/IndividualProperty'
+import { ChevronRight, Edit } from 'lucide-react';
 
 const PropertyCard = ({ property }) => {
 
@@ -42,7 +43,7 @@ const PropertyCard = ({ property }) => {
   
 
   return (
-    <div className="bg-white  shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 w-96 border-4 border-opacity-50 hover:border-opacity-100 pb-2 rounded-2xl border-green-600">
+    <div className="bg-white  shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 w-96 hover:border-4 hover:border-opacity-100 pb-2 rounded-2xl border-blue-600">
       <div className="relative">
         {property.marketRent > 0 && (
           <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
@@ -109,17 +110,18 @@ const PropertyCard = ({ property }) => {
           <span className="text-xs">MAINTENANCE</span>
         </button>
       </div>
-      
-      <div className="flex justify-end p-3 bg-gray-50 text-gray-500 hover:text-gray-700 transition-colors" >
+
+      <div className="flex gap-x-[60%] justify-center">
+      <div className="flex justify-end p-3 bg-gray-50 text-gray-500 hover:text-gray-700 transition-colors rounded-xl" >
         <Link className="text-blue-500 hover:text-blue-600 font-medium" to={`/properties?id=${property.id}`}>
         
         <a href="#" className="flex items-center text-sm">
             VIEW
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRight className='h-5 w-5'/>
         </a>
         </Link>
+      </div>
+
       </div>
     </div>
   );

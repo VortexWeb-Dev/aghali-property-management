@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Plus, Filter} from 'lucide-react'
+import { useNavigate } from 'react-router-dom';
 import PropertyCard from './../components/PropertyCard';
 
 
@@ -8,7 +9,8 @@ const Properties = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch('https://vortexwebpropertymanagement.com/api/properties')
       .then(response => response.json())
@@ -32,6 +34,7 @@ const Properties = () => {
     
     return name.includes(term) || address.includes(term) || city.includes(term);
   });
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -97,8 +100,10 @@ const Properties = () => {
                 <span className="ml-1">Filter</span>
               </button>
               
-              <button className="flex ml-2 px-4 py-1.5 text-sm bg-green-600 rounded-md text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
-                <Plus className='h-4 w-4'/>
+              <button className="flex ml-2 px-4 py-1.5 text-sm bg-blue-600 rounded-md text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onClick={() => navigate("/properties/add")}
+              >
+                <Plus className='h-6 w-6'/>
                 <span>Add property</span>
               </button>
             </div>
@@ -107,7 +112,7 @@ const Properties = () => {
         
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 gap-y-3 place-items-center mx-8 mt-8">
