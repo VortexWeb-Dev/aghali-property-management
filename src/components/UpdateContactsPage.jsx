@@ -6,8 +6,9 @@ const UpdateContactButton = ({
   onUpdateContact,
   isLoading,
   existingContact,
+  showModal,
+  setShowModal
 }) => {
-  const [showModal, setShowModal] = useState(false);
   const [updatedContact, setUpdatedContact] = useState(existingContact);
   const [preview, setPreview] = useState(existingContact.avatar || "");
 
@@ -61,14 +62,14 @@ const UpdateContactButton = ({
     <>
       <button
         onClick={() => setShowModal(true)}
-        className=" px-4 py-2 rounded transition"
+        className="px-4 py-2 rounded transition"
       >
         <Edit className="h-6 w-6 text-blue-600 hover:text-blue-800"/>
       </button>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
-          <div className="bg-white p-6 rounded-lg w-96">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[1000] overflow-aut">
+          <div className="bg-white p-6 rounded-lg w-96 relative z-[1001]">
             <h2 className="text-xl font-bold mb-4">Update Contact</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
@@ -127,7 +128,7 @@ const UpdateContactButton = ({
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
                 >
                   {isLoading ? "Updating..." : "Update Contact"}
                 </button>

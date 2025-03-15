@@ -134,9 +134,6 @@ const Contacts = () => {
     );
   }
 
-  // ContactCard component
-//  <ContactCard setContacts={setContacts} contact={contacts}/>
-
   return (
     <div className="p-6 overflow-x-hidden bg-gradient-to-br min-h-screen">
       <div className="max-w-7xl mx-auto">

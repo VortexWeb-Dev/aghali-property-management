@@ -22,7 +22,6 @@ const Navbar = () => {
             }
         </button>
         <div className="flex items-center">
-          <div className="bg-red-500 text-white rounded-full h-8 w-8 flex items-center justify-center text-lg font-bold mr-1">2</div>
           <div className="border-r border-gray-300 h-6 mx-4"></div>
           <button className="text-gray-600">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
