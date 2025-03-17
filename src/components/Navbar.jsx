@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { SidebarContext } from './../Contexts/SidebarContext';
 import { Menu, X, Bell, MessageCircle, User, Plus, Filter } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const { isCollapsed, toggleSidebar } = useContext(SidebarContext);
+  const navigate = useNavigate()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm px-4 py-2 flex items-center justify-between">
@@ -53,7 +55,7 @@ const Navbar = () => {
         <button className="ml-3 p-2 text-gray-600">
         <MessageCircle className='h-6 w-6'/>
         </button>
-        <button className="ml-3 p-2 text-gray-600 bg-blue-100 rounded-full">
+        <button className="ml-3 p-2 text-gray-600 bg-blue-100 rounded-full" onClick={()=> navigate('/profile')}>
           <User className='h-6 w-6'/>
         </button>
       </div>

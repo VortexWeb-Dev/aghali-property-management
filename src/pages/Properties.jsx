@@ -89,11 +89,7 @@ const Properties = () => {
                   </svg>
                 </div>
               </div>
-              
-              <button className="flex ml-2 px-3 py-1.5 text-sm bg-white border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <Plus className='h-4 w-4'/>
-                <span className="ml-1">Import</span>
-              </button>
+               
               
               <button className=" flex ml-2 px-3 py-1.5 text-sm bg-white border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <Filter className='h-4 w-4'/>

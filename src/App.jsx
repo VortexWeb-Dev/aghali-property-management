@@ -10,7 +10,9 @@ import AddProperty from "./pages/AddProperty";
 import AccountingPage from "./pages/AccountingPage";
 import ContactsPage from "./pages/ContactsPage";
 import ListingsPage from "./pages/ListingPage";
+import ProfilePage from "./pages/ProfilePage";
 import AddListings from "./components/AddListing";
+
 import { SidebarProvider, SidebarContext } from "./Contexts/SidebarContext";
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -23,6 +25,8 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import MaintenanceDashboard from "./pages/MaintenancePage";
+import EditProfilePage from "./components/EditMainProfile";
+import EditInfoPage from "./components/EditProfileInfo";
 
 // Wrapper component to access context
 const MainContent = ({ children }) => {
@@ -66,6 +70,9 @@ function App() {
                 <Route path="/maintenance" element={<MaintenanceDashboard />} />
                 <Route path="/listings" element={<ListingsPage />} />
                 <Route path="/listings/add" element={<AddListings />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/edit-profile" element={<EditProfilePage />} />
+                <Route path="/profile/edit-info" element={<EditInfoPage />} />
               </Routes>
             </MainContent>
           </div>

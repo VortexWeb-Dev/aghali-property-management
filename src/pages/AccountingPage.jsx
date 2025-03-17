@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ArrowUp, ArrowDown, Plus, Trash2, Filter, Download, Calendar, DollarSign, CreditCard } from "lucide-react";
+import { ArrowUp, ArrowDown, Plus, Trash2, Filter, Download, Calendar, DollarSign, CreditCard, Edit } from "lucide-react";
 import AddAccountingButton from "./../components/AddAccountingButton";
 import DeleteEntity from "../components/DeleteEntity";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import UpdateAccountingModal from "../components/UpdateAccountingModal";
 
 const AccountingPage = () => {
   const [accountings, setAccountings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedAccounting, setSelectedAccounting] = useState(null);
   useEffect(() => {
     const fetchAccountings = async () => {
       try {
@@ -30,6 +32,19 @@ const AccountingPage = () => {
 
   const handleAddTransaction = (newTransaction) => {
     setAccountings((prev) => [newTransaction, ...prev]);
+  };
+
+  const handleUpdateTransaction = (updatedTransaction) => {
+    setAccountings((prev) =>
+      prev.map((accounting) =>
+        accounting.id === updatedTransaction.id ? updatedTransaction : accounting
+      )
+    );
+  };
+
+  const handleOpenEditModal = (accounting) => {
+    setSelectedAccounting(accounting);
+    setIsEditModalOpen(true);
   };
 
   const getStatusColor = (status) => {
@@ -203,6 +218,12 @@ const AccountingPage = () => {
                       </td>
                       <td className="p-4 border-b border-dashed border-blue-200">
                         <div className="flex justify-end">
+                        <button 
+                            className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
+                            onClick={() => handleOpenEditModal(accounting)}
+                          >
+                            <Edit size={18} />
+                          </button>
                           <button className="p-2 text-gray-500 hover:text-red-600 transition-colors">
                             <Trash2 size={18} />
                           </button>
@@ -228,6 +249,13 @@ const AccountingPage = () => {
           </div>
         </div>
       </div>
+      <UpdateAccountingModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        accounting={selectedAccounting}
+        onUpdate={handleUpdateTransaction}
+      />
+    
     </div>
   );
 };
