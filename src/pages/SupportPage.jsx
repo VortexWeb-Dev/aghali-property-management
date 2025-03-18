@@ -1,26 +1,44 @@
-import React from 'react';
-import { Mail, Phone, Globe } from 'lucide-react';
-import FAQAccordion from '../components/FAQAccordion';
+import React from "react";
+import { Mail, Phone, Globe, BadgeHelp } from "lucide-react";
+import FAQAccordion from "../components/FAQAccordion";
 
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+
       {/* Hero Banner */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl text-white py-16 md:py-24">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl text-white py-8 md:py-12 shadow-lg">
         <div className="container mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center leading-tight">
-            Welcome To VortexWeb Support
-          </h1>
-          <p className="mt-4 text-xl md:text-2xl text-blue-100 text-center max-w-3xl mx-auto">
-            We're here to help you with any questions or concerns
-          </p>
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between max-w-4xl mx-auto gap-5">
+            <div className="flex items-center mb-6 md:mb-0">
+              <div className="bg-white/20 p-4 rounded-full mr-6">
+                <BadgeHelp className="w-32 h-32" />
+              </div>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold leading-tight">
+                  Welcome To
+                  <br />
+                  VortexWeb Support
+                </h1>
+              </div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 max-w-md">
+              <p className="text-xl text-blue-50">
+                We're here to help you with any questions or concerns about our
+                services.
+              </p>
+              
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Contact Cards Section */}
       <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900">Reach Out To Us</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900">
+            Reach Out To Us
+          </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
             Choose your preferred way to connect with our support team
           </p>
@@ -34,11 +52,13 @@ const ContactPage = () => {
               <div className="bg-blue-100 p-4 rounded-full mb-6">
                 <Mail size={36} className="text-blue-600" />
               </div>
-              <h3 className="text-2xl font-semibold text-blue-900 mb-2">Email Us</h3>
+              <h3 className="text-2xl font-semibold text-blue-900 mb-2">
+                Email Us
+              </h3>
               <p className="text-gray-600 text-center mb-6">
                 Get a response within 24 hours from our support team
               </p>
-              <a 
+              <a
                 href="mailto:support@vortexweb.com"
                 className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300 w-full"
               >
@@ -54,11 +74,13 @@ const ContactPage = () => {
               <div className="bg-blue-100 p-4 rounded-full mb-6">
                 <Phone size={36} className="text-blue-600" />
               </div>
-              <h3 className="text-2xl font-semibold text-blue-900 mb-2">WhatsApp</h3>
+              <h3 className="text-2xl font-semibold text-blue-900 mb-2">
+                WhatsApp
+              </h3>
               <p className="text-gray-600 text-center mb-6">
                 Quick responses for urgent issues via WhatsApp
               </p>
-              <a 
+              <a
                 href="https://wa.me/97142886713"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -76,11 +98,13 @@ const ContactPage = () => {
               <div className="bg-blue-100 p-4 rounded-full mb-6">
                 <Globe size={36} className="text-blue-600" />
               </div>
-              <h3 className="text-2xl font-semibold text-blue-900 mb-2">Visit Website</h3>
+              <h3 className="text-2xl font-semibold text-blue-900 mb-2">
+                Visit Website
+              </h3>
               <p className="text-gray-600 text-center mb-6">
                 Explore our knowledge base and product information
               </p>
-              <a 
+              <a
                 href="https://vortexweb.cloud/contact.html"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -102,11 +126,10 @@ const ContactPage = () => {
           </p>
         </div>
 
-        <FAQAccordion/>
+        <FAQAccordion />
       </div>
 
       {/* Footer */}
-     
     </div>
   );
 };

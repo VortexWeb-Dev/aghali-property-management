@@ -76,6 +76,7 @@ function App() {
               <Navbar properties={properties} setProperties={setProperties}/>
               <Routes>
                 <Route path="*" element={<Properties data={properties} />} />
+                <Route path="/" element={<PropertyResolver />} />
                 <Route path="/properties" element={<PropertyResolver />} />
                 <Route path="/properties/add" element={<AddProperty />} />
                 <Route path="/accounting" element={<AccountingPage />} />
