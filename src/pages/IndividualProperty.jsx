@@ -269,13 +269,13 @@ const PropertyDetails = ({id}) => {
                 <div className="space-y-3">
                   {property.attachments.map((attachment, index) => (
                     <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <span className="text-gray-700">{attachment.name || `Document ${index + 1}`}</span>
+                      <span className="text-gray-700">{attachment.match(/[^/]+$/) || `Document ${index + 1}`}</span>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="text-blue-500 hover:text-blue-700"
                       >
-                        <Download className="w-5 h-5" />
+                        <Download className="w-5 h-5" onClick={()=> {window.location.href = attachment}}/>
                       </motion.button>
                     </div>
                   ))}
@@ -394,13 +394,13 @@ const PropertyDetails = ({id}) => {
                 <div className="relative pl-6 border-l-2 border-green-200">
                   <div className="absolute left-[-8px] top-0 w-4 h-4 rounded-full bg-green-500"></div>
                   <p className="text-sm text-gray-500">Added to System</p>
-                  <p className="font-medium text-gray-700">{new Date(property.created_at).toLocaleDateString()}</p>
+                  <p className="font-medium text-gray-700">{new Date(property.created_at).toLocaleDateString("en-GB")}</p>
                 </div>
                 
                 <div className="relative pl-6 border-l-2 border-blue-200">
                   <div className="absolute left-[-8px] top-0 w-4 h-4 rounded-full bg-blue-500"></div>
                   <p className="text-sm text-gray-500">Last Updated</p>
-                  <p className="font-medium text-gray-700">{new Date(property.updated_at).toLocaleDateString()}</p>
+                  <p className="font-medium text-gray-700">{new Date(property.created_at).toLocaleDateString("en-GB")}</p>
                 </div>
               </div>
             </motion.div>

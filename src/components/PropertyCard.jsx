@@ -31,7 +31,7 @@ const PropertyCard = ({ property }) => {
   const getPropertyImage = () => {
     if (property.photos && property.photos.length > 0) {
       const imageUrl = property.photos[0];
-      console.log(imageUrl);
+    
   
       // Check if URL ends with a valid image extension
       if (/\.(jpeg|jpg|png|gif|webp|svg)$/i.test(imageUrl)) {
@@ -43,7 +43,7 @@ const PropertyCard = ({ property }) => {
   
 
   return (
-    <div className="bg-white  shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 w-96 hover:border-4 hover:border-opacity-100 pb-2 rounded-2xl border-blue-600">
+    <div className="bg-white  shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 w-[87%] hover:w-[90%] hover:border-4 hover:border-opacity-100 pb-2 rounded-2xl border-blue-600">
       <div className="relative">
         {property.marketRent > 0 && (
           <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">

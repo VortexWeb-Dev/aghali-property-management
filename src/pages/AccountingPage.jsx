@@ -167,7 +167,7 @@ const AccountingPage = () => {
                   <th className="p-4 text-left text-blue-800 font-semibold border-b border-dashed border-blue-200">Payment Method</th>
                   <th className="p-4 text-left text-blue-800 font-semibold border-b border-dashed border-blue-200">Invoice #</th>
                   <th className="p-4 text-left text-blue-800 font-semibold border-b border-dashed border-blue-200">Notes</th>
-                  <th className="p-4 text-left text-blue-800 font-semibold border-b border-dashed border-blue-200"></th>
+                  <th className="p-4 text-left text-blue-800 font-semibold border-b border-dashed border-blue-200">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -190,13 +190,13 @@ const AccountingPage = () => {
                       <td className="p-4 border-b border-dashed border-blue-200">
                         <div className="flex items-center gap-2">
                           <Calendar size={16} className="text-blue-700" />
-                          {new Date(accounting.transaction_date).toLocaleDateString()}
+                          {new Date(accounting.transaction_date).toLocaleDateString("en-GB")}
                         </div>
                       </td>
                       <td className="p-4 border-b border-dashed border-blue-200">
                         <div className="flex items-center gap-2">
                           <Calendar size={16} className="text-blue-700" />
-                          {new Date(accounting.due_date).toLocaleDateString()}
+                          {new Date(accounting.due_date).toLocaleDateString("en-GB")}
                         </div>
                       </td>
                       <td className="p-4 border-b border-dashed border-blue-200">

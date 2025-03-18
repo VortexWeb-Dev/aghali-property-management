@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {Plus, Filter} from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
 import PropertyCard from './../components/PropertyCard';
+import NavigationDropdown from '../components/NavigationDropdown';
 
-
-const Properties = () => {
+const Properties = ({data}) => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All');
@@ -12,16 +12,18 @@ const Properties = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://vortexwebpropertymanagement.com/api/properties')
-      .then(response => response.json())
-      .then(data => {
-        setProperties(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching properties:', error);
-        setLoading(false);
-      });
+    // fetch('https://vortexwebpropertymanagement.com/api/properties')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setProperties(data);
+    //     setLoading(false);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching properties:', error);
+    //     setLoading(false);
+    //   });
+    setProperties(data)
+    setLoading(false)
   }, []);
 
   // Filter properties based on search term
@@ -42,12 +44,7 @@ const Properties = () => {
       
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-6 border-b pb-4">
-          <div className="flex items-center space-x-2">
-            <h1 className="text-xl font-semibold text-gray-800">Properties</h1>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </div>
+          <NavigationDropdown/>
           
           <div className="flex space-x-2">
             <div className="flex items-center">

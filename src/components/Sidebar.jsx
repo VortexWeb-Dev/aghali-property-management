@@ -27,15 +27,15 @@ const MenuSection = ({ items, isCollapsed, activeItem, onItemClick }) => {
     <div className="py-2">
       {items.map((item) => (
         <MenuItem
-          key={item.label}
-          icon={item.icon}
-          label={item.label}
-          isCollapsed={isCollapsed}
-          isActive={activeItem === item.label}
-          onClick={() => {
-            onItemClick(item.label);
-            navigate(`/${item.label.toLowerCase()}`);
-          }}
+        key={item.label}
+        icon={item.icon}
+        label={item.label}
+        isCollapsed={isCollapsed}
+        isActive={activeItem === item.label}
+        onClick={() => {
+          onItemClick(item.label);
+          navigate(`/${item.label.toLowerCase()}`);
+        }}
         />
       ))}
     </div>
@@ -46,7 +46,7 @@ const Sidebar = () => {
   // Use the context instead of local state
   const { isCollapsed, toggleSidebar } = useContext(SidebarContext);
   const [activeItem, setActiveItem] = useState('Off plan');
-
+  
   const mainMenuItems = [
     { icon: Building2, label: 'Properties' },
     { icon: WalletCards, label: 'Accounting' },
@@ -54,32 +54,28 @@ const Sidebar = () => {
     { icon: Wrench, label: 'Maintenance' },
     { icon: ListPlus, label: 'Listings' }
   ];
-
-//   { icon: Building2, text: "Properties", to: "/properties" },
-//   { icon: WalletCards, text: "Accounting", to: "/accountings" },
-//   { icon: Users2, text: "Contacts", to: "/contacts" },
-//   { icon: Wrench, text: "Maintenance", to: "/maintenances" },
-//   { icon: ListPlus, text: "Listings", to: "/listings" },
-
+  
+  
+  const navigate = useNavigate();
   const bottomMenuItems = [
     { icon: HeadphonesIcon, label: 'Support' },
   ];
-
+  
   return (
     <div 
-      className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300 ease-in-out flex flex-col z-40
-        ${isCollapsed ? 'w-20' : 'w-48'}
+    className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300 ease-in-out flex flex-col z-40
+      ${isCollapsed ? 'w-20' : 'w-48'}
       `}
-    >
+      >
       {/* Header */}
-      <div className="flex items-center p-4 ease-in-out">
+      <button className="flex items-center p-4 ease-in-out" onClick={()=> navigate("/properties")}>
         {isCollapsed ? (
           <img src="logo.png" alt="Behomes" className="h-12 w-12" />
         ) : (
           <img src="user.png" alt="User" className="h-12 w-16" />
         )}
       
-      </div>
+      </button>
 
       {/* Main Menu */}
       <div className="flex-grow">

@@ -15,8 +15,12 @@ const CreateListingPage = () => {
     availableFrom: "",
     listingDate: "",
     expiryDate: "",
-    property: null,
-    listedBy: null,
+    property: {
+      id: null
+    },
+    listedBy: {
+      id: null
+    }
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -60,17 +64,28 @@ const CreateListingPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handlePropertyChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     property: properties.find((prop) => prop.id === parseInt(e.target.value)),
+  //   });
+  // };
+
   const handlePropertyChange = (e) => {
-    setFormData({
-      ...formData,
-      property: properties.find((prop) => prop.id === parseInt(e.target.value)),
-    });
+    const selectedProperty = properties.find((prop) => prop.id === parseInt(e.target.value, 10)) || { id: null };
+  
+    setFormData((prevData) => ({
+      ...prevData,
+      property: { ...prevData.property, ...selectedProperty },
+    }));
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
+      console.log(formData)
       await axios.post(
         "https://vortexwebpropertymanagement.com/api/listings",
         formData
@@ -246,7 +261,7 @@ const CreateListingPage = () => {
                   <select
                     id="property"
                     name="property"
-                    value={formData.property?.id || ""}
+                    value={formData.property.id }
                     onChange={handlePropertyChange}
                     className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                     required
