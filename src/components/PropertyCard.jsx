@@ -11,7 +11,8 @@ const PropertyCard = ({ property }) => {
   const getPropertyTypeLabel = () => {
     if (property.type === "Single Unit") {
       return "SINGLE-FAMILY";
-    } else if (property.beds > 1) {
+    }
+    else if (property.beds > 1) {
       return `${property.beds} UNITS`;
     }
     return property.type?.toUpperCase() || "SINGLE-FAMILY";
@@ -76,9 +77,9 @@ const PropertyCard = ({ property }) => {
         <div className="mt-4 border-t border-gray-100 pt-4">
           <div className="flex justify-between items-center">
             <div className="font-medium text-gray-700">{getPropertyTypeLabel()}</div>
-            <div className="bg-gray-100 py-1 px-3 rounded text-sm text-gray-600">
+            {/* <div className="bg-gray-100 py-1 px-3 rounded text-sm text-gray-600">
               {property.beds > 0 && property.beds < 10 ? "OCCUPIED" : "VACANT"}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

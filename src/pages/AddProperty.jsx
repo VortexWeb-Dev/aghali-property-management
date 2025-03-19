@@ -291,7 +291,7 @@ return (
             </div>
 
             <div className={`p-5 rounded-xl border-2 transition-all ${
-              formData.type === "Multi Unit" 
+              formData.type === "Multiple Unit" 
                 ? "border-blue-500 bg-blue-50" 
                 : "border-gray-200 hover:border-gray-300"
             }`}>
@@ -299,13 +299,13 @@ return (
                 <input
                   type="radio"
                   name="type"
-                  value="Multi Unit"
-                  checked={formData.type === "Multi Unit"}
+                  value="Multiple Unit"
+                  checked={formData.type === "Multiple Unit"}
                   onChange={handleChange}
                   className="mt-1 h-4 w-4 text-blue-500 focus:ring-blue-500"
                 />
                 <div>
-                  <span className="font-medium block mb-1">Multi Unit</span>
+                  <span className="font-medium block mb-1">Multiple Unit</span>
                   <p className="text-sm text-gray-600">
                     Multiple rental units sharing a single property address.
                   </p>

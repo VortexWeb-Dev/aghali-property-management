@@ -16,10 +16,12 @@ const CreateListingPage = () => {
     listingDate: "",
     expiryDate: "",
     property: {
-      id: null
+      id: null,
+      name: ""
     },
     listedBy: {
-      id: null
+      id: null,
+      name: ""
     }
   });
   const [loading, setLoading] = useState(false);
@@ -76,7 +78,16 @@ const CreateListingPage = () => {
   
     setFormData((prevData) => ({
       ...prevData,
-      property: { ...prevData.property, ...selectedProperty },
+      property: { id: selectedProperty.id},
+    }));
+  };
+  
+  const handleListerChange = (e) => {
+    const selectedLister = tenants.find((tenant) => tenant.id === parseInt(e.target.value, 10)) || { id: null };
+  
+    setFormData((prevData) => ({
+      ...prevData,
+      listedBy: { id: selectedLister.id},
     }));
   };
   
@@ -291,14 +302,15 @@ const CreateListingPage = () => {
                     id="listedBy"
                     name="listedBy"
                     value={formData.listedBy?.id || ""}
-                    onChange={(e) => {
-                      setFormData({
-                        ...formData,
-                        listedBy: tenants.find(
-                          (tenant) => tenant.id === parseInt(e.target.value)
-                        ),
-                      });
-                    }}
+                    onChange= {handleListerChange}
+                    // {(e) => {
+                    //   setFormData({
+                    //     ...formData,
+                    //     listedBy: tenants.find(
+                    //       (tenant) => tenant.id === parseInt(e.target.value)
+                    //     ),
+                    //   });
+                    // }}
                     className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                     required
                   >

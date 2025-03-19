@@ -134,7 +134,7 @@ const ListingsPage = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-4xl font-bold bg-[#1f386a] bg-clip-text text-transparent">
-            Property Listings
+            Listings
           </h1>
           <p className="text-blue-800/60 mt-1 font-medium">
             Manage your portfolio of properties

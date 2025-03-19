@@ -12,35 +12,32 @@ const Properties = ({data}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch('https://vortexwebpropertymanagement.com/api/properties')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setProperties(data);
-    //     setLoading(false);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching properties:', error);
-    //     setLoading(false);
-    //   });
+ 
     setProperties(data)
     setLoading(false)
   }, []);
 
-  // Filter properties based on search term
+
   const filteredProperties = properties.filter(property => {
-    // Convert search term and property details to lowercase for case-insensitive search
     const term = searchTerm.toLowerCase();
     const name = property.name ? property.name.toLowerCase() : '';
     const address = property.address ? property.address.toLowerCase() : '';
     const city = property.city ? property.city.toLowerCase() : '';
-    
-    return name.includes(term) || address.includes(term) || city.includes(term);
+  
+    // Only filter by type if it's not "All"
+    const typeMatch = filter === "All" || property.type === filter;
+  
+    // Check if the property matches the search term
+    const searchMatch = name.includes(term) || address.includes(term) || city.includes(term);
+  
+    return typeMatch && searchMatch;
   });
+  
 
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* <Navbar /> */}
+     
       
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-6 border-b pb-4">
@@ -56,8 +53,8 @@ const Properties = ({data}) => {
                   onChange={(e) => setFilter(e.target.value)}
                 >
                   <option value="All">All</option>
-                  <option value="Vacant">Vacant</option>
-                  <option value="Occupied">Occupied</option>
+                  <option value="Single Unit">Single Unit</option>
+                  <option value="Multiple Unit">Multiple Unit</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -88,10 +85,10 @@ const Properties = ({data}) => {
               </div>
                
               
-              <button className=" flex ml-2 px-3 py-1.5 text-sm bg-white border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              {/* <button className=" flex ml-2 px-3 py-1.5 text-sm bg-white border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <Filter className='h-4 w-4'/>
                 <span className="ml-1">Filter</span>
-              </button>
+              </button> */}
               
               <button className="flex ml-2 px-4 py-1.5 text-sm bg-blue-600 rounded-md text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               onClick={() => navigate("/properties/add")}
