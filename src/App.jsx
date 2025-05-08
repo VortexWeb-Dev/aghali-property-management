@@ -13,6 +13,8 @@ import ListingsPage from "./pages/ListingPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddListings from "./components/AddListing";
 import SupportPage from "./pages/SupportPage";
+import Dashboard from "./pages/Dashboard";
+import ReportsPage from "./pages/ReportsPage";
 
 import { SidebarProvider, SidebarContext } from "./Contexts/SidebarContext";
 import toast, { Toaster } from 'react-hot-toast';
@@ -28,6 +30,7 @@ import {
 import MaintenanceDashboard from "./pages/MaintenancePage";
 import EditProfilePage from "./components/EditMainProfile";
 import EditInfoPage from "./components/EditProfileInfo";
+import BookingsPage from "./pages/BookingPage";
 
 // Wrapper component to access context
 const MainContent = ({ children }) => {
@@ -76,18 +79,22 @@ function App() {
               <Navbar properties={properties} setProperties={setProperties}/>
               <Routes>
                 <Route path="*" element={<Properties data={properties} />} />
-                <Route path="/" element={<PropertyResolver />} />
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/properties" element={<PropertyResolver />} />
                 <Route path="/properties/add" element={<AddProperty />} />
                 <Route path="/accounting" element={<AccountingPage />} />
                 <Route path="/contacts" element={<ContactsPage />} />
                 <Route path="/maintenance" element={<MaintenanceDashboard />} />
                 <Route path="/listings" element={<ListingsPage />} />
+                <Route path="/bookings" element={<BookingsPage />} />
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/listings/add" element={<AddListings />} />
+                <Route path="/bookings/add" element={<AddListings />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/profile/edit-profile" element={<EditProfilePage />} />
                 <Route path="/profile/edit-info" element={<EditInfoPage />} />
+                <Route path="/reports" element={<ReportsPage />} />
               </Routes>
             </MainContent>
           </div>

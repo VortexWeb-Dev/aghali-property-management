@@ -1,17 +1,36 @@
-import React, { useContext, useState } from 'react';
-import { Home, Building2, WalletCards, Users2, Wrench, ListPlus, FileStack, HeadphonesIcon } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { SidebarContext } from './../Contexts/SidebarContext';
+import React, { useContext, useState } from "react";
+import {
+  Home,
+  Building2,
+  WalletCards,
+  Users2,
+  Wrench,
+  ListPlus,
+  FileStack,
+  HeadphonesIcon,
+  Calendar,
+  ChartBar,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { SidebarContext } from "./../Contexts/SidebarContext";
+import { label } from "framer-motion/client";
 
 const MenuItem = ({ icon: Icon, label, isCollapsed, isActive, onClick }) => {
   return (
-    <div 
+    <div
       onClick={onClick}
       className={`flex items-center px-4 py-3 cursor-pointer transition-colors duration-200
-        ${isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}
-      `}  
+        ${
+          isActive
+            ? "text-blue-600 bg-blue-50"
+            : "text-gray-700 hover:bg-gray-100"
+        }
+      `}
     >
-      <Icon size={20} className={`${isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-500'}`} />
+      <Icon
+        size={20}
+        className={`${isActive ? "text-blue-600 bg-blue-50" : "text-gray-500"}`}
+      />
       {!isCollapsed && (
         <span className="ml-3 text-sm font-medium transition-opacity duration-200">
           {label}
@@ -27,15 +46,15 @@ const MenuSection = ({ items, isCollapsed, activeItem, onItemClick }) => {
     <div className="py-2">
       {items.map((item) => (
         <MenuItem
-        key={item.label}
-        icon={item.icon}
-        label={item.label}
-        isCollapsed={isCollapsed}
-        isActive={activeItem === item.label}
-        onClick={() => {
-          onItemClick(item.label);
-          navigate(`/${item.label.toLowerCase()}`);
-        }}
+          key={item.label}
+          icon={item.icon}
+          label={item.label}
+          isCollapsed={isCollapsed}
+          isActive={activeItem === item.label}
+          onClick={() => {
+            onItemClick(item.label);
+            navigate(`/${item.label.toLowerCase()}`);
+          }}
         />
       ))}
     </div>
@@ -45,36 +64,38 @@ const MenuSection = ({ items, isCollapsed, activeItem, onItemClick }) => {
 const Sidebar = () => {
   // Use the context instead of local state
   const { isCollapsed, toggleSidebar } = useContext(SidebarContext);
-  const [activeItem, setActiveItem] = useState('Off plan');
-  
+  const [activeItem, setActiveItem] = useState("Off plan");
+
   const mainMenuItems = [
-    { icon: Building2, label: 'Properties' },
-    { icon: WalletCards, label: 'Accounting' },
-    { icon: Users2, label: 'Contacts' },
-    { icon: Wrench, label: 'Maintenance' },
-    { icon: ListPlus, label: 'Listings' }
+    { icon: Home, label: "Dashboard" },
+    { icon: Building2, label: "Properties" },
+    { icon: WalletCards, label: "Accounting" },
+    { icon: Users2, label: "Contacts" },
+    { icon: Wrench, label: "Maintenance" },
+    { icon: ListPlus, label: "Listings" },
+    { icon: Calendar, label: "Bookings" },
+    { icon: ChartBar, label: "Reports" },
   ];
-  
-  
+
   const navigate = useNavigate();
-  const bottomMenuItems = [
-    { icon: HeadphonesIcon, label: 'Support' },
-  ];
-  
+  const bottomMenuItems = [{ icon: HeadphonesIcon, label: "Support" }];
+
   return (
-    <div 
-    className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300 ease-in-out flex flex-col z-40
-      ${isCollapsed ? 'w-20' : 'w-48'}
+    <div
+      className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300 ease-in-out flex flex-col z-40
+      ${isCollapsed ? "w-20" : "w-48"}
       `}
-      >
+    >
       {/* Header */}
-      <button className="flex items-center p-4 ease-in-out" onClick={()=> navigate("/properties")}>
+      <button
+        className="flex items-center p-4 ease-in-out"
+        onClick={() => navigate("/dashboard")}
+      >
         {isCollapsed ? (
           <img src="logo.png" alt="Behomes" className="h-12 w-12" />
         ) : (
           <img src="user.png" alt="User" className="h-12 w-16" />
         )}
-      
       </button>
 
       {/* Main Menu */}
