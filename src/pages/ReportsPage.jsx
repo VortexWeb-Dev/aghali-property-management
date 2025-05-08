@@ -32,7 +32,7 @@ const COLORS = [
 ];
 const BASE_URL = "https://vortexwebpropertymanagement.com/api";
 
-const Dashboard = () => {
+const ReportsPage = () => {
   // State
   const [listings, setListings] = useState([]);
   const [properties, setProperties] = useState([]);
@@ -814,4 +814,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ReportsPage;
