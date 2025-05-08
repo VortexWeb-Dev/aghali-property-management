@@ -13,7 +13,11 @@ const DeleteEntity = ({ entityName, entityId }) => {
       );
       if (response.status === 200) {
         navigate(`/${entityName}`);
-        toast.success("Property deleted successfully!");
+        toast.success(
+          entityName[0].toUpperCase() +
+            entityName.slice(1, entityName.length - 1) +
+            " deleted successfully!"
+        );
         window.location.reload();
       }
     } catch (error) {

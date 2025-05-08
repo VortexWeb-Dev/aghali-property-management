@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import DeleteEntity from "../components/DeleteEntity";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-// import UpdateBookingModal from "../components/UpdateBookingModal";
+import UpdateBookingModal from "../components/UpdateBookingModal";
 
 const BookingsPage = () => {
   const navigate = useNavigate();
