@@ -211,38 +211,33 @@ const BookingsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center pt-2 relative z-10">
-                  {/* Property name and Lister Name */}
+                {/* Property name and Lister Name */}
 
-                  {/* <div className="max-w-sm w-[60%] p-2 bg-white rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <h2 className="text-lg text-gray-500 dark:text-gray-400 mt-1">
-                      Property:{" "}
-                      <span className="font-medium text-gray-800">
+                <div className="w-full p-2 bg-white rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+                  <h2 className="text-lg text-gray-500 dark:text-gray-400 mt-1">
+                    Property:{" "}
+                    <span className="font-medium text-gray-800">
                       {booking.property.name}
-                      </span>
-                    </h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                      by:{" "}
-                      <span className="font-medium text-gray-800">
-                        {booking.listedBy.name}
-                      </span>
-                    </p>
-                  </div> */}
+                    </span>
+                  </h2>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    by:{" "}
+                    <span className="font-medium text-gray-800">
+                      {booking.tenant.name}
+                    </span>
+                  </p>
+                </div>
 
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleEditClick(booking)}
-                      className="p-2 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110"
-                      title="Edit Booking"
-                    >
-                      <Edit className="w-5 h-5" />
-                    </button>
-                    <div className="transform transition-transform duration-300 hover:scale-110">
-                      <DeleteEntity
-                        entityName="bookings"
-                        entityId={booking.id}
-                      />
-                    </div>
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={() => handleEditClick(booking)}
+                    className="p-2 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110"
+                    title="Edit Booking"
+                  >
+                    <Edit className="w-5 h-5" />
+                  </button>
+                  <div className="transform transition-transform duration-300 hover:scale-110">
+                    <DeleteEntity entityName="bookings" entityId={booking.id} />
                   </div>
                 </div>
               </div>
