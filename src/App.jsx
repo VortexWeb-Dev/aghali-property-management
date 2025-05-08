@@ -12,6 +12,7 @@ import ContactsPage from "./pages/ContactsPage";
 import ListingsPage from "./pages/ListingPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddListings from "./components/AddListing";
+import AddBooking from "./components/AddBooking";
 import SupportPage from "./pages/SupportPage";
 import Dashboard from "./pages/Dashboard";
 import ReportsPage from "./pages/ReportsPage";
@@ -90,7 +91,7 @@ function App() {
                 <Route path="/bookings" element={<BookingsPage />} />
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/listings/add" element={<AddListings />} />
-                <Route path="/bookings/add" element={<AddListings />} />
+                <Route path="/bookings/add" element={<AddBooking />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/profile/edit-profile" element={<EditProfilePage />} />
                 <Route path="/profile/edit-info" element={<EditInfoPage />} />
