@@ -10,6 +10,7 @@ import {
   HeadphonesIcon,
   Calendar,
   ChartBar,
+  File,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { SidebarContext } from "./../Contexts/SidebarContext";
@@ -74,6 +75,7 @@ const Sidebar = () => {
     { icon: Wrench, label: "Maintenance" },
     { icon: ListPlus, label: "Listings" },
     { icon: Calendar, label: "Bookings" },
+    { icon: File, label: "Leases" },
     { icon: ChartBar, label: "Reports" },
   ];
 

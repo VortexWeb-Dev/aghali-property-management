@@ -12,6 +12,10 @@ const DeleteEntity = ({ entityName, entityId }) => {
         `https://vortexwebpropertymanagement.com/api/${entityName}/${entityId}`
       );
       if (response.status === 200) {
+        if (entityName === "lease") {
+          navigate("/leases");
+        }
+
         navigate(`/${entityName}`);
         toast.success(
           entityName[0].toUpperCase() +

@@ -13,12 +13,15 @@ import ListingsPage from "./pages/ListingPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddListings from "./components/AddListing";
 import AddBooking from "./components/AddBooking";
+import AddLease from "./components/AddLease";
 import SupportPage from "./pages/SupportPage";
 import Dashboard from "./pages/Dashboard";
 import ReportsPage from "./pages/ReportsPage";
+import BookingsPage from "./pages/BookingPage";
+import LeasesPage from "./pages/LeasePage";
 
 import { SidebarProvider, SidebarContext } from "./Contexts/SidebarContext";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 import {
   BrowserRouter as Router,
@@ -31,7 +34,6 @@ import {
 import MaintenanceDashboard from "./pages/MaintenancePage";
 import EditProfilePage from "./components/EditMainProfile";
 import EditInfoPage from "./components/EditProfileInfo";
-import BookingsPage from "./pages/BookingPage";
 
 // Wrapper component to access context
 const MainContent = ({ children }) => {
@@ -51,23 +53,31 @@ const MainContent = ({ children }) => {
 function App() {
   const [properties, setProperties] = useState([]);
 
-    useEffect(() => {
-      fetch('https://vortexwebpropertymanagement.com/api/properties')
-        .then(response => response.json())
-        .then(data => {
-          setProperties(data);
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error fetching properties:', error);
-        });
-    }, []);
+  useEffect(() => {
+    fetch("https://vortexwebpropertymanagement.com/api/properties")
+      .then((response) => response.json())
+      .then((data) => {
+        setProperties(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching properties:", error);
+      });
+  }, []);
 
   const PropertyResolver = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
 
-    return <>{id!=null ? <IndividualProperty id={id} /> : <Properties data={properties}/>}</>;
+    return (
+      <>
+        {id != null ? (
+          <IndividualProperty id={id} />
+        ) : (
+          <Properties data={properties} />
+        )}
+      </>
+    );
   };
 
   return (
@@ -77,7 +87,7 @@ function App() {
           <div className="flex flex-col min-h-screen">
             <Sidebar />
             <MainContent>
-              <Navbar properties={properties} setProperties={setProperties}/>
+              <Navbar properties={properties} setProperties={setProperties} />
               <Routes>
                 <Route path="*" element={<Properties data={properties} />} />
                 <Route path="/" element={<Dashboard />} />
@@ -89,18 +99,23 @@ function App() {
                 <Route path="/maintenance" element={<MaintenanceDashboard />} />
                 <Route path="/listings" element={<ListingsPage />} />
                 <Route path="/bookings" element={<BookingsPage />} />
+                <Route path="/leases" element={<LeasesPage />} />
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/listings/add" element={<AddListings />} />
                 <Route path="/bookings/add" element={<AddBooking />} />
+                <Route path="/leases/add" element={<AddLease />} />
                 <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/profile/edit-profile" element={<EditProfilePage />} />
+                <Route
+                  path="/profile/edit-profile"
+                  element={<EditProfilePage />}
+                />
                 <Route path="/profile/edit-info" element={<EditInfoPage />} />
                 <Route path="/reports" element={<ReportsPage />} />
               </Routes>
             </MainContent>
           </div>
         </SidebarProvider>
-        <Toaster/>
+        <Toaster />
       </Router>
       <footer className=" ml-6 bg-blue-900 text-white py-8 rounded-t-3xl rounded">
         <div className="container mx-auto px-6 text-center">
