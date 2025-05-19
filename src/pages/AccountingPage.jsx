@@ -131,7 +131,7 @@ const AccountingPage = () => {
     );
 
   return (
-    <div className="p-6 bg-blue-50 min-h-screen">
+    <div className="p-6 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl shadow-md p-6">
           <div className="flex justify-between items-center mb-6">

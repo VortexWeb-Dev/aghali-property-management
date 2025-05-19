@@ -32,6 +32,7 @@ const BookingsPage = () => {
       const validBookings = bookingsArray.filter(
         (item) => typeof item === "object" && item !== null
       );
+      console.log("Bookings:", validBookings);
       setBookings(validBookings);
     } catch (err) {
       setError(err.message);
@@ -130,7 +131,7 @@ const BookingsPage = () => {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-gradient-to-br from-blue-50 to-teal-50 min-h-screen">
+    <div className="p-8 space-y-8 min-h-screen">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-4xl font-bold bg-[#1f386a] bg-clip-text text-transparent">

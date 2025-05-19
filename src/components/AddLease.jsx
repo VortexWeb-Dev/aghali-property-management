@@ -159,7 +159,7 @@ const CreateLeasePage = () => {
     );
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       <div className="max-w-6xl mx-auto p-6">
         <div className="mb-4">
           <button

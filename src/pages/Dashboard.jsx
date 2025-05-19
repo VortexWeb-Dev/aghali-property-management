@@ -162,7 +162,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow p-6">
+    <div className="rounded-xl shadow p-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-800">Property Management</h2>
         <a href="/reports" className="text-indigo-600 text-sm hover:underline flex items-center">

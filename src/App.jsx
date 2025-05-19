@@ -41,7 +41,7 @@ const MainContent = ({ children }) => {
 
   return (
     <main
-      className={`pt-16 transition-all duration-300 flex-grow ${
+      className={`pt-16 transition-all duration-300 flex-grow bg-gradient-to-br from-blue-50 to-teal-50 ${
         isCollapsed ? "ml-20" : "ml-48"
       }`}
     >
@@ -117,7 +117,7 @@ function App() {
         </SidebarProvider>
         <Toaster />
       </Router>
-      <footer className=" ml-6 bg-blue-900 text-white py-8 rounded-t-3xl rounded">
+      <footer className=" ml-6 bg-blue-900 text-white py-4">
         <div className="container mx-auto px-6 text-center">
           <p>© 2025 VortexWeb. All rights reserved.</p>
         </div>

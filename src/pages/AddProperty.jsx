@@ -221,7 +221,7 @@ const AddProperty = () => {
   };
 
 return (
-  <div className="p-8 max-w-7xl mx-auto bg-white rounded-xl shadow-sm">
+  <div className="p-8 max-w-7xl mx-auto rounded-xl shadow-sm">
     <h1 className="text-3xl font-bold mb-8 text-gray-800">Add New Property</h1>
     
     <form className="grid grid-cols-1 lg:grid-cols-2 gap-8" onSubmit={handleSubmit}>
